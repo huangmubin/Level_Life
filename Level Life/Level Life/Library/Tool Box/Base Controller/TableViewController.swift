@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UITableViewController {
+class TableViewController: UITableViewController, ViewControllerProtocol {
 
     // MARK: - Values
     

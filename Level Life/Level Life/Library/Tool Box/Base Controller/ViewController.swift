@@ -8,23 +8,26 @@
 
 import UIKit
 
+protocol ViewControllerIsAppearingProtocol: NSObjectProtocol {
+    var is_appearing_controller: Bool { get set }
+}
+
+protocol TabBarControllerSelectProtocol: NSObjectProtocol {
+    func tabbar_controller(current_index: Int, current_controller: UIViewController?, select_index: Int?) -> Bool
+    func tabbar_controller(did_select_index index: Int)
+}
+
+protocol ViewControllerProtocol: ViewControllerIsAppearingProtocol, TabBarControllerSelectProtocol {
+    
+}
+
 /** Base View Controller, extension view controller methods. */
-class ViewController: UIViewController {
+class ViewController: UIViewController, ViewControllerProtocol {
     
     // MARK: - Values
     
     /** 是否是当前屏幕上显示的控制器 */
     public var is_appearing_controller: Bool = false
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        is_appearing_controller = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        is_appearing_controller = false
-    }
     
     // MARK: - View Life
     
@@ -50,6 +53,16 @@ class ViewController: UIViewController {
         )
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        is_appearing_controller = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        is_appearing_controller = false
+    }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

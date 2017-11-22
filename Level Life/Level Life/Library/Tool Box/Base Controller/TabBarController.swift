@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
 
     // MARK: - Value
@@ -26,6 +27,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             name: NSNotification.Name.UIApplicationWillChangeStatusBarOrientation,
             object: nil
         )
+        temp_selected_view_controller = self.selectedViewController
     }
     
     deinit {
@@ -82,27 +84,16 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     // MARK: - UITabBarControllerDelegate
     
+    weak var temp_selected_view_controller: UIViewController?
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        if let controller = viewController as? ViewController {
-            return controller.tabbar_controller(
-                current_index: self.selectedIndex,
-                current_controller: selectedViewController,
-                select_index: viewControllers?.index(of: viewController)
-            )
-        } else if let controller = viewController as? TableViewController {
+        if let controller = viewController as? ViewControllerProtocol {
             return controller.tabbar_controller(
                 current_index: self.selectedIndex,
                 current_controller: selectedViewController,
                 select_index: viewControllers?.index(of: viewController)
             )
         } else if let navigation = viewController as? NavigationController {
-            if let controller = navigation.viewControllers.first as? ViewController {
-                return controller.tabbar_controller(
-                    current_index: self.selectedIndex,
-                    current_controller: selectedViewController,
-                    select_index: viewControllers?.index(of: viewController)
-                )
-            } else if let controller = viewController as? TableViewController {
+            if let controller = navigation.viewControllers.first as? ViewControllerProtocol {
                 return controller.tabbar_controller(
                     current_index: self.selectedIndex,
                     current_controller: selectedViewController,
@@ -114,18 +105,21 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        if let controller = viewController as? ViewController {
+        if let controller = viewController as? ViewControllerProtocol {
             controller.tabbar_controller(did_select_index: selectedIndex)
-        } else if let controller = viewController as? TableViewController {
-            controller.tabbar_controller(did_select_index: selectedIndex)
+            (temp_selected_view_controller as? ViewControllerProtocol)?.is_appearing_controller = false
+            controller.is_appearing_controller = true
+            temp_selected_view_controller = (controller as? UIViewController)
         } else if let navigation = viewController as? NavigationController {
             for navigation_controller in navigation.viewControllers {
-                if let controller = navigation_controller as? ViewController {
+                if let controller = navigation_controller as? ViewControllerProtocol {
                     controller.tabbar_controller(did_select_index: selectedIndex)
-                } else if let controller = viewController as? TableViewController {
-                    controller.tabbar_controller(did_select_index: selectedIndex)
+                    controller.is_appearing_controller = false
                 }
             }
+            (temp_selected_view_controller as? ViewControllerProtocol)?.is_appearing_controller = false
+            (navigation.last_view_controller as? ViewControllerProtocol)?.is_appearing_controller = true
+            temp_selected_view_controller = navigation.last_view_controller ?? navigation
         }
     }
     

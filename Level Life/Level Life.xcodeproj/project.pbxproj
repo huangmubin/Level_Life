@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9C4272241FC50DFB0020361B /* Ex_String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C4272231FC50DFB0020361B /* Ex_String.swift */; };
 		9C9DD72A1FC3D49F00C83A70 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DD7291FC3D49F00C83A70 /* AppDelegate.swift */; };
 		9C9DD72C1FC3D49F00C83A70 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9DD72B1FC3D49F00C83A70 /* ViewController.swift */; };
 		9C9DD72F1FC3D49F00C83A70 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9C9DD72D1FC3D49F00C83A70 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9C4272231FC50DFB0020361B /* Ex_String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ex_String.swift; sourceTree = "<group>"; };
 		9C9DD7261FC3D49F00C83A70 /* Level Life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Level Life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C9DD7291FC3D49F00C83A70 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9C9DD72B1FC3D49F00C83A70 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			children = (
 				9C9DD75B1FC40F1200C83A70 /* Ex_UIDevice.swift */,
 				9C9DD75F1FC423FE00C83A70 /* Ex_NSObject.swift */,
+				9C4272231FC50DFB0020361B /* Ex_String.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -336,6 +339,7 @@
 				9C9DD7521FC3D83C00C83A70 /* Language.swift in Sources */,
 				9C9DD75C1FC40F1200C83A70 /* Ex_UIDevice.swift in Sources */,
 				9C9DD7681FC42B3400C83A70 /* BaseViewController.swift in Sources */,
+				9C4272241FC50DFB0020361B /* Ex_String.swift in Sources */,
 				9C9DD7741FC42E8900C83A70 /* LifeDataEntryController.swift in Sources */,
 				9C9DD7601FC423FE00C83A70 /* Ex_NSObject.swift in Sources */,
 				9C9DD75A1FC3D90000C83A70 /* TableViewController.swift in Sources */,
